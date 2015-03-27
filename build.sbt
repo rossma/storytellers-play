@@ -1,4 +1,4 @@
-name := """story-tellers"""
+name := """storytellers"""
 
 version := "1.0-SNAPSHOT"
 
