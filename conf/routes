@@ -1,0 +1,48 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# the @controllers syntax is used so that the router knows we are referring to a class.
+
+GET        /s                   @controllers.Application.sindex
+
+# -------------- Secure scoial ------------------------#
+GET     /login                      @securesocial.controllers.LoginPage.login
+GET     /logout                     @securesocial.controllers.LoginPage.logout
+
+# User Registration and password handling
+#GET     /signup                     @securesocial.controllers.Registration.startSignUp
+#POST    /signup                     @securesocial.controllers.Registration.handleStartSignUp
+#GET     /signup/:token              @securesocial.controllers.Registration.signUp(token)
+#POST    /signup/:token              @securesocial.controllers.Registration.handleSignUp(token)
+#GET     /password                   @securesocial.controllers.PasswordChange.page
+#POST    /password                   @securesocial.controllers.PasswordChange.handlePasswordChange
+
+# Providers entry points
+#GET     /authenticate/:provider     @securesocial.controllers.ProviderController.authenticate(provider)
+#POST    /authenticate/:provider     @securesocial.controllers.ProviderController.authenticateByPost(provider)
+
+#GET        /custom/login        @controllers.CustomLoginController.login
+#GET        /custom/logout       @controllers.CustomLoginController.logout
+#GET        /current-user        @controllers.Application.currentUser
+#-------------------------------------------------------#
+
+# Home page
+GET     /                           @controllers.Application.index
+GET 	/javascriptRoutes			controllers.Application.javascriptRoutes
+
+# Login 
+GET     /login		             	controllers.Security.login
+
+# Story 
+GET     /story/covers             	controllers.Stories.findCoverPages
+GET     /story/series             	controllers.Stories.findCoverPagesBySeries(id: Long)
+POST    /          					controllers.Stories.upload()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file       		controllers.Assets.at(path="/public", file)
+
+GET     /webjars/*file              controllers.WebJarAssets.at(file)
+GET     /vassets/*file		        controllers.Assets.versioned(path="/public", file: Asset)
+
+->     /auth                securesocial.Routes

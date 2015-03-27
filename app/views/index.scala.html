@@ -1,0 +1,118 @@
+@(username: Option[String])
+
+@scripts = {
+  <script type="text/javascript" src='@routes.Assets.at("templates/story-search-results.js")'></script>
+  <script type="text/javascript" src='@routes.Assets.at("templates/series-preview-results.js")'></script>
+  
+  <script type="text/javascript" charset="utf-8">
+    $(function() {
+    	fetchCovers();
+    });
+          
+    function fetchCovers() {
+      var r = jsRoutes.controllers.Stories.findCoverPages();
+      $.ajax({
+        url: r.url,
+        type: r.type,
+        error: function(data) {
+          console.error("Error:" + JSON.stringify(data));
+        },
+        success: function(data) {
+          console.log("Success:" + JSON.stringify(data));
+          dust.render('templates/story-search-results', data, function(err, out) {
+              $('#results-blk').replaceWith(out);
+          });
+        }
+      });
+    }
+
+    function fetchBySeries(id) {
+        console.log("in fetchBySeries, id:" + id);
+    	var r = jsRoutes.controllers.Stories.findCoverPagesBySeries(id);
+        $.ajax({
+          url: r.url,
+          type: r.type,
+          error: function(data) {
+            console.error("Error:" + JSON.stringify(data));
+          },
+          success: function(data) {
+            //console.log("Success:" + JSON.stringify(data));
+            dust.render('templates/series-preview-results', data, function(err, out) {
+            	$('#columns-small').replaceWith(out);
+            });
+          }
+        });
+    }
+
+    $('#pageDetailModal').on('show.bs.modal', function(event) {
+        var link = $(event.relatedTarget);
+        var imgSrc = link.data('img');
+        var title = link.data('title');
+        var seriesId = link.data('series-id');
+        var seriesName = link.data('series-name');
+        var modal = $(this)
+        modal.find('.modal-title').text(title);
+        modal.find('.modal-body .spotlight img').attr("src", imgSrc);
+        //modal.find('.modal-body').css({width:'auto', height:'auto', 'max-height':'100%'});
+        modal.find('.modal-dialog').css({width:'80%'});
+        modal.find('.series-panel-title').text(seriesName);
+  
+        //load series images
+        fetchBySeries(seriesId);
+        attachPreviewLink();
+
+    })
+    
+    function attachPreviewLink() {
+        $('body').on('click', 'a.preview-lnk', function() {
+          var imgSrc = $(this).data('img');
+          var title =  $(this).data('title');
+          var modal = $('#pageDetailModal');
+          modal.find('.modal-title').text(title);
+          modal.find('.modal-body .spotlight img').attr("src", imgSrc);
+          
+      });
+    }  
+        
+  </script>
+}  
+
+
+@main("Storytellers", scripts, username) {
+  <div id="results-blk" >
+  <!-- json placeholder -->
+  </div>
+
+  <div class="modal fade" id="pageDetailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="height: 90%;">
+      <div class="modal-content" style="overflow: auto; height: 100%;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body" style="overflow: hidden; height: 90%;">
+
+          <div class="panel panel-default" style="float: right; width: 28%; margin-bottom: 10px; height: 100%;">
+            <div class="panel-heading">
+              <h3 id="previewPnlSeriesTitle" class="panel-title series-panel-title">Series</h3>
+            </div>
+            <div class="panel-body" style="height: 90%; max-height: 90%; overflow-y: scroll;">
+
+              <div id="columns-small">
+              <!-- json placeholder -->
+              </div>
+
+            </div>
+          </div>
+          <div class="spotlight" style="float: left; width: 70%; text-align: center; height: 100%;">
+            <img src="" style="max-width: 100%; max-height: 100%;" />
+          </div>
+          <div style="clear: both;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+}
