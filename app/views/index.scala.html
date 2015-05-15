@@ -1,4 +1,4 @@
-@(username: Option[String])
+@(username: Option[String])(implicit request: RequestHeader, lang: Lang, env: securesocial.core.RuntimeEnvironment[_])
 
 @scripts = {
   <script type="text/javascript" src='@routes.Assets.at("templates/story-search-results.js")'></script>
@@ -38,7 +38,7 @@
           success: function(data) {
             //console.log("Success:" + JSON.stringify(data));
             dust.render('templates/series-preview-results', data, function(err, out) {
-            	$('#columns-small').replaceWith(out);
+            	$('.masonry-cols-small').replaceWith(out);
             });
           }
         });
@@ -100,7 +100,7 @@
             </div>
             <div class="panel-body" style="height: 90%; max-height: 90%; overflow-y: scroll;">
 
-              <div id="columns-small">
+              <div class="masonry-cols-small">
               <!-- json placeholder -->
               </div>
 

@@ -16,4 +16,5 @@ dist
 /.cache
 /.settings
 /activator*
-
+conf/securesocial.conf
+conf/smtp.conf

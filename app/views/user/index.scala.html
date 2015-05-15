@@ -1,0 +1,151 @@
+@(username: Option[String])(implicit request: RequestHeader, lang: Lang, env: securesocial.core.RuntimeEnvironment[_])
+
+@scripts = {
+
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+    	$("#edit-profile-lnk").on("click", "div img", function () {
+    		console.log("config clicked");
+    		return false;
+    	});
+    });
+          
+  </script>
+} @main("User Profile", scripts, username) {
+<div class="wrapper" style="border: 1px solid red;">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <img src='@routes.Assets.at("images/silhouette.png")' alt="" class="center-block img-circle img-thumbnail">
+        </div>
+
+        <div class="col-sm-5">
+          <h2>John Doe</h2>
+        </div>
+
+        <div class="col-sm-4">
+          <a id="edit-profile-lnk" href="@routes.UserProfile.index" class="pull-right">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default" style="padding-left: 20px; padding-right: 20px;">Edit
+                Profile</button>
+              <img class="btn btn-default" src='@routes.Assets.at("images/config-icon.png")'
+                style="max-width: 34px; max-height: 34px; padding: 0px;" />
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-9  pull-right">
+          <hr />
+          <div class="col-sm-4">
+            <h3>12</h3>
+            <p>Followers</p>
+          </div>
+
+          <div class="col-sm-4">
+            <h3>23</h3>
+            <p>Following</p>
+          </div>
+
+          <div class="col-sm-4">
+            <h3>84</h3>
+            <p>Likes</p>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <!-- hr />
+        <div class="col-sm-12" style="border: 1px solid purple;">
+          <p>this is my text</p>
+          <p>this is my text</p>
+        </div-->
+
+      </div>
+
+    </div> <!-- panel-body -->
+    <div class="panel-footer">
+      <div class="row">
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Series 1</h3>
+              </div>
+              <div class="panel-body" style="border:1px solid pink;padding-top:0px;padding-bottom:0px;">
+                <div class="row" style="border:1px solid yellow;max-height:300px;">
+                  <div class="col-sm-12" style="padding:2px;height:150px;overflow:hidden;border:1px solid purple;">
+                    <img src='@routes.Assets.at("images/uploads/cs1.png")' style="width:100%"/>
+                  </div>
+                  <div class="col-sm-4" style="padding:2px;">
+                    <img src='@routes.Assets.at("images/uploads/cs2.png")' style="max-width:100%;;max-height:100px;"/>
+                  </div>
+                </div>
+              </div> 
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Dilbert</h3>
+              </div>
+              <div class="panel-body" style="padding-top:0px;padding-bottom:0px;">
+                <div class="row">
+                  <div class="col-sm-12" style="padding:2px;height:150px;overflow:hidden;border:1px solid purple;">
+                    <img src='@routes.Assets.at("images/uploads/cs3.png")' style="width:100%;"/>
+                  </div>
+                  <div class="col-sm-4" style="padding:2px;">
+                    <img src='@routes.Assets.at("images/uploads/cs4.png")' style="max-width:100%;"/>
+                  </div>
+                  <div class="col-sm-4" style="padding:2px;">
+                    <img src='@routes.Assets.at("images/uploads/cs5.png")' style="max-width:100%;"/>
+                  </div>
+                </div>
+              </div> 
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Calvin and Hobbes</h3>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-sm-12" style="padding:2px;">
+                    <img src='@routes.Assets.at("images/uploads/cs6.png")' style="max-width:100%;"/>
+                  </div>
+                  <div class="col-sm-4" style="padding:2px;">
+                    <img src='@routes.Assets.at("images/uploads/cs7.png")' style="max-width:100%;"/>
+                  </div>
+                  <div class="col-sm-4" style="padding:2px;">
+                    <img src='@routes.Assets.at("images/uploads/cs8.png")' style="max-width:100%;"/>
+                  </div>
+                </div>
+              </div> 
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Garfield</h3>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-sm-12" style="padding:2px;">
+                    <img src='@routes.Assets.at("images/uploads/cs9.png")' style="max-width:100%;"/>
+                  </div>
+                  <div class="col-sm-4" style="padding:2px;">
+                    <img src='@routes.Assets.at("images/uploads/cs10.png")' style="max-width:100%;"/>
+                  </div>
+                  <div class="col-sm-4" style="padding:2px;">
+                    <img src='@routes.Assets.at("images/uploads/cs11.png")' style="max-width:100%;"/>
+                  </div>
+                </div>
+              </div> 
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+}

@@ -1,21 +1,19 @@
 package models
 
-import java.util.Date
-import java.sql.{ Date => SqlDate }
+import com.github.tototoshi.slick.JdbcJodaSupport._
+import org.joda.time.DateTime
 import play.api.db.slick.Config.driver.simple._
 import scala.slick.lifted.Tag
 
-case class Story(id: Option[Long], title: String, summary: String, seriesId: Option[Long] = None, created: Date)
+case class Story(id: Option[Long], title: String, summary: String, seriesId: Option[Long] = None, created: DateTime)
 
 class StoryTbl(tag: Tag) extends Table[Story](tag, "STORY") {
 
-  implicit val dateColumnType = MappedColumnType.base[Date, Long](d => d.getTime, d => new Date(d))
-  
   def id = column[Long]("ID", O.PrimaryKey, O.AutoInc)
   def title = column[String]("TITLE", O.NotNull)
   def summary = column[String]("SUMMARY")
   def seriesId = column[Long]("SERIES_ID", O.NotNull)
-  def created = column[Date]("CREATED", O.NotNull)
+  def created = column[DateTime]("CREATION_DATE", O.NotNull)
   def * = (id.?, title, summary, seriesId.?, created) <> (Story.tupled, Story.unapply _)
 }
 

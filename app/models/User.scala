@@ -17,6 +17,8 @@ import scala.slick.lifted.TableQuery
 
 import UserTableQueries._ 
 
+import play.Logger
+
 case class BasicUser(main: BasicProfile, identities: List[BasicProfile])
 
 case class User(id: String, mainId: Long) {
@@ -170,12 +172,23 @@ class Profiles(tag: Tag) extends Table[Profile](tag, "PROFILE") {
 }
 
 object UserTableQueries {
-  object mailTokens extends TableQuery(new MailTokens(_))
-  object userAuthenticators extends TableQuery(new UserAuthenticators(_))
-  object users extends TableQuery(new Users(_))
-  object oauth1s extends TableQuery(new OAuth1s(_))
-  object oauth2s extends TableQuery(new OAuth2s(_))
-  object passwords extends TableQuery(new Passwords(_))
-  object profiles extends TableQuery(new Profiles(_))
+  val mailTokens = TableQuery[MailTokens]
+  val userAuthenticators = TableQuery[UserAuthenticators]
+  val users = TableQuery[Users]
+  val oauth1s = TableQuery[OAuth1s]
+  val oauth2s = TableQuery[OAuth2s]
+  val passwords = TableQuery[Passwords]
+  val profiles = TableQuery[Profiles]
 }
 
+
+object UserDAO {
+  val mailTokensQ = TableQuery[MailTokens]
+  
+  def insertMailToken(token: MailToken)(implicit s: Session) {
+    Logger.debug("insertMailToken")
+    mailTokensQ.insert(token)
+    Logger.debug("insertMailToken - out")
+  }
+  
+}

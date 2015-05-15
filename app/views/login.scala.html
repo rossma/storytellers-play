@@ -1,55 +1,81 @@
- @main("Log in") {
+@(loginForm: Form[(String,String)], errorMsg: Option[String] = None)(implicit request: RequestHeader, lang: Lang, env:securesocial.core.RuntimeEnvironment[_])
 
-<div style="width: 100%;">
-  <div class="panel panel-default" style="margin: 50px auto; max-width: 400px;">
-    <div class="panel-heading">
-      <h3 class="panel-title">Log in to Storytellers</h3>
-    </div>
-    <div class="panel-body">
+@import securesocial.core.providers.TwitterProvider.Twitter
+@import securesocial.core.providers.GoogleProvider.Google
+@import securesocial.core.providers.FacebookProvider.Facebook
+@import securesocial.core.providers.UsernamePasswordProvider.UsernamePassword
 
-      <div style="width: 80%; margin: 0 auto;">
-        <div class="login-social-btns">
-          <a href="#" class="btn btn-lg btn-block btn-facebook"> <i class="fa fa-facebook visible-xs"></i> <span
-            class="hidden-xs">Facebook</span>
-          </a> <a href="#" class="btn btn-lg btn-block btn-twitter"> <i class="fa fa-twitter visible-xs"></i> <span
-            class="hidden-xs">Twitter</span>
-          </a> <a href="#" class="btn btn-lg btn-block btn-google"> <i class="fa fa-google-plus visible-xs"></i> <span
-            class="hidden-xs">Google+</span>
-          </a>
-        </div>
-        <hr />
-        <form class="login-form" role="form" action="" autocomplete="off" method="POST">
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text"
-              class="form-control input-lg" name="username" placeholder="email address">
-          </div>
-          <div class="input-group">
-            <span class="input-group-addon"><i class="fa fa-lock"></i></span> <input type="password"
-              class="form-control input-lg" name="password" placeholder="Password">
-          </div>
-          <div class="input-group">
-            <label class=""> <input type="checkbox" value="remember-me"> Remember Me
-            </label>
-          </div>
-          <button class="btn btn-primary btn-block btn-lg pull-right" type="submit">Log in</button>
+@import helper._
 
-        </form>
+@main("Log in") {
+    
+  <div class="wrapper">
+    <div class="panel panel-default" style="margin: 50px auto; max-width: 400px;">
+      <div class="panel-heading">
+        <h3 class="panel-title">Log in to Storytellers</h3>
       </div>
-
-
-
-
-    </div>
-    <div class="panel-footer clearfix">
-      <div class="pull-right">
-        <p>
-          <a href="#">Forgot password?</a>
-        </p>
-        <p>
-          <a href="#">Sign up</a>
-        </p>
+      <div class="panel-body">
+  
+        @errorMsg.map { msg =>
+              <div class="alert alert-error">
+                  @Messages(msg)
+              </div>
+          }
+      
+          @request.flash.get("success").map { msg =>
+              <div class="alert alert-info">
+                  @msg
+              </div>
+          }
+      
+          @request.flash.get("error").map { msg =>
+              <div class="alert alert-error">
+                  @msg
+              </div>
+          }
+        
+        <div style="width: 80%; margin: 0 auto;">
+          <div class="login-social-btns">
+            <a href="@env.routes.authenticationUrl(Facebook)" class="btn btn-lg btn-block btn-facebook"> <i class="fa fa-facebook visible-xs"></i> <span
+              class="hidden-xs">Facebook</span>
+            </a> <a href="@env.routes.authenticationUrl(Twitter)" class="btn btn-lg btn-block btn-twitter"> <i class="fa fa-twitter visible-xs"></i> <span
+              class="hidden-xs">Twitter</span>
+            </a> <a href="@env.routes.authenticationUrl(Google)" class="btn btn-lg btn-block btn-google"> <i class="fa fa-google-plus visible-xs"></i> <span
+              class="hidden-xs">Google+</span>
+            </a>
+          </div>
+          <hr />
+          <form action='@env.routes.authenticationUrl("userpass")' class="login-form" autocomplete="off" method="POST">
+            @CSRF.formField
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user"></i></span> <input type="text"
+                class="form-control input-lg" name="username" placeholder="email address">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span> <input type="password"
+                class="form-control input-lg" name="password" placeholder="Password">
+            </div>
+            <div class="input-group">
+              <label class=""> <input type="checkbox" value="remember-me"> Remember Me
+              </label>
+            </div>
+            <button class="btn btn-primary btn-block btn-lg pull-right" type="submit">Log in</button>
+  
+          </form>
+        </div>
+  
+      </div>
+      <div class="panel-footer clearfix">
+        <div class="pull-right">
+          <p>
+            <a href="@env.routes.startResetPasswordUrl">Forgot password?</a>
+          </p>
+          <p>
+            <a href="@env.routes.startSignUpUrl">Sign up</a>
+          </p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
 }

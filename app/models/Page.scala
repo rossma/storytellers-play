@@ -1,22 +1,21 @@
 package models
 
-import java.util.Date
-import java.sql.{ Date => SqlDate }
+import com.github.tototoshi.slick.JdbcJodaSupport._
+import org.joda.time.DateTime
 import play.api.db.slick.Config.driver.simple._
 import scala.slick.lifted.Tag
 import play.Logger
 
-case class Page(sequence: Option[Int], storyId: Option[Long], imagePath: String, isCover: Boolean = true, created: Date = new Date())
+case class Page(sequence: Option[Int], storyId: Option[Long], imagePath: String, isCover: Boolean = true, 
+    created: DateTime = new DateTime)
 
 class PageTbl(tag: Tag) extends Table[Page](tag, "PAGE") {
-
-  implicit val dateColumnType = MappedColumnType.base[Date, Long](d => d.getTime, d => new Date(d))
   
   def sequence = column[Int]("SEQUENCE")
   def imagePath = column[String]("IMAGE_PATH", O.NotNull)
   def isCover = column[Boolean]("IS_COVER")
   def storyId = column[Long]("STORY_ID", O.NotNull)
-  def created = column[Date]("CREATED", O.NotNull)
+  def created = column[DateTime]("CREATION_DATE", O.NotNull)
   def * = (sequence.?, storyId.?, imagePath, isCover, created) <> (Page.tupled, Page.unapply _)
   def pk = primaryKey("PAGE_PK", (sequence, storyId))
 }

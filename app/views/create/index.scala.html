@@ -1,0 +1,110 @@
+@(username: Option[String])(implicit request: RequestHeader, lang: Lang, env: securesocial.core.RuntimeEnvironment[_])
+
+@scripts = {
+  <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/jquery.fileupload-noscript.css"))'>
+  <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/jquery.fileupload.css"))'>
+  <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/jquery.fileupload-ui.css"))'>
+    
+  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("js/main.js"))'></script>    
+  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("js/jquery.iframe-transport.js"))'></script>
+  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("js/jquery.fileupload.js"))'></script>
+  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("js/jquery.fileupload-process.js"))'></script>
+  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("js/jquery.fileupload-validate.js"))'></script>
+  
+  <script type="text/javascript" charset="utf-8">
+    $(function() {
+
+    	$('#fileupload').fileupload({
+            dataType: 'json',
+            done: function (e, data) {
+                $.each(data.result.files, function (index, file) {
+                    $('<p/>').text(file.name).appendTo(document.body);
+                });
+            }
+        });
+
+        
+    });
+  </script>
+}  
+
+
+@main("Upload", scripts, username) {
+
+   
+  <div class="wrapper">
+    <div class="panel panel-default" style="margin: 50px auto; max-width: 400px;">
+      <div class="panel-heading">
+        <h3 class="panel-title">File upload</h3>
+      </div>
+      <div class="panel-body">
+        @helper.form(action = routes.StoryCreation.upload, 'enctype -> "multipart/form-data") {
+          
+          <input type="file" name="picture">
+          
+          <p>
+              <input type="submit">
+          </p>
+        }
+        
+          <p>
+              <h2>Here's another example</h2>
+          </p>
+          
+          <p>
+            <input id="fileupload" type="file" name="files[]" data-url="server/php/" multiple>
+          </p>  
+          
+          <p>
+              <h2>And another example</h2>
+          </p>
+          
+          
+              <form id="fileupload-frm" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
+        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+        <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript>
+        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+        <div class="row fileupload-buttonbar">
+            <div class="col-lg-7">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>Add files...</span>
+                    <input type="file" name="files[]" multiple>
+                </span>
+                <button type="submit" class="btn btn-primary start">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start upload</span>
+                </button>
+                <button type="reset" class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel upload</span>
+                </button>
+                <button type="button" class="btn btn-danger delete">
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Delete</span>
+                </button>
+                <input type="checkbox" class="toggle">
+                <!-- The global file processing state -->
+                <span class="fileupload-process"></span>
+            </div>
+            <!-- The global progress state -->
+            <div class="col-lg-5 fileupload-progress fade">
+                <!-- The global progress bar -->
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                </div>
+                <!-- The extended global progress state -->
+                <div class="progress-extended">&nbsp;</div>
+            </div>
+        </div>
+        <!-- The table listing the files available for upload/download -->
+        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+    </form>
+          
+            
+      </div>
+    </div>
+  </div>    
+  
+}

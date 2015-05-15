@@ -2,8 +2,8 @@
 
   <!-- Button trigger modal -->
 
-  <div id="wrapper">
-    <div id="columns">
+  <div class="wrapper">
+    <div class="masonry-cols">
       {#pages}
       <div class="pin">
         <a data-toggle="modal" href="#pageDetailModal" class="btn btn-default" data-title="{title}"

@@ -1,0 +1,101 @@
+!SESSION 2015-04-17 14:12:20.006 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.fullversion=JRE 1.7.0 IBM J9 2.7 Windows 7 amd64-64 Compressed References 20141114_222539 (JIT enabled, AOT enabled)
+J9VM - R27_Java727_SR2_20141114_1623_B222539
+JIT  - tr.r13.java_20141003_74587.03
+GC   - R27_Java727_SR2_20141114_1623_B222539_CMPRSS
+J9CL - 20141114_222539
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -data C:\projects\play\storytellers -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2015-04-17 14:12:24.278
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 incompatible with java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 incompatible with java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Timer.java:567)
+	at java.util.TimerThread.run(Timer.java:517)
+
+!ENTRY org.eclipse.core.net 1 0 2015-04-17 14:12:27.118
+!MESSAGE System property http.proxyHost is not set but should be 192.0.200.246.
+
+!ENTRY org.eclipse.core.net 1 0 2015-04-17 14:12:27.118
+!MESSAGE System property http.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.ui 4 4 2015-04-17 14:12:28.778
+!MESSAGE Referenced part does not exist yet: com.ibm.etools.ui.navigator.SDExplorer.
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-04-17 14:12:31.958
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'M:\'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2015-04-17 14:13:28.333 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.fullversion=JRE 1.7.0 IBM J9 2.7 Windows 7 amd64-64 Compressed References 20141114_222539 (JIT enabled, AOT enabled)
+J9VM - R27_Java727_SR2_20141114_1623_B222539
+JIT  - tr.r13.java_20141003_74587.03
+GC   - R27_Java727_SR2_20141114_1623_B222539_CMPRSS
+J9CL - 20141114_222539
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2015-04-17 14:15:21.463
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 incompatible with java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 incompatible with java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Timer.java:567)
+	at java.util.TimerThread.run(Timer.java:517)
+
+!ENTRY org.eclipse.core.net 1 0 2015-04-17 14:15:25.453
+!MESSAGE System property http.proxyHost is not set but should be 192.0.200.246.
+
+!ENTRY org.eclipse.core.net 1 0 2015-04-17 14:15:25.463
+!MESSAGE System property http.proxyPort is not set but should be 8080.
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-04-17 14:15:31.205
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'M:\'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2015-05-15 15:25:59.519 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.fullversion=JRE 1.7.0 IBM J9 2.7 Windows 7 amd64-64 Compressed References 20141114_222539 (JIT enabled, AOT enabled)
+J9VM - R27_Java727_SR2_20141114_1623_B222539
+JIT  - tr.r13.java_20141003_74587.03
+GC   - R27_Java727_SR2_20141114_1623_B222539_CMPRSS
+J9CL - 20141114_222539
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2015-05-15 15:27:04.964
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 incompatible with java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 incompatible with java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Timer.java:567)
+	at java.util.TimerThread.run(Timer.java:517)
+
+!ENTRY org.eclipse.core.net 1 0 2015-05-15 15:27:10.799
+!MESSAGE System property http.proxyHost is not set but should be 192.0.200.246.
+
+!ENTRY org.eclipse.core.net 1 0 2015-05-15 15:27:10.803
+!MESSAGE System property http.proxyPort is not set but should be 8080.

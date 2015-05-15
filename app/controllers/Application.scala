@@ -5,15 +5,14 @@ import play.api.mvc._
 import views._
 import play.api.libs.json.JsValue
 import play.api.libs.json.Json
-
 import securesocial.core._
-import service.DemoUser
+import models.BasicUser
 
-class Application(override implicit val env: RuntimeEnvironment[DemoUser]) extends securesocial.core.SecureSocial[DemoUser] {
+class Application(override implicit val env: RuntimeEnvironment[BasicUser]) extends securesocial.core.SecureSocial[BasicUser] {
   
-  def sindex = SecuredAction { implicit request =>
-    Ok(views.html.sindex(request.user.main))
-  }
+//  def sindex = SecuredAction { implicit request =>
+//    Ok(views.html.sindex(request.user.main))
+//  }
   
   def index = UserAwareAction { implicit request =>
     val username = request.user match {
@@ -61,8 +60,4 @@ object Application extends Controller {
       )
     ).as("text/javascript")
   }
-
-//  def index = Action {
-//    Ok(views.html.index(Some("ddd")))
-//  }
 }

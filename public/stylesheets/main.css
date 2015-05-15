@@ -1,3 +1,6 @@
+/*
+ * General body content CSS
+ *******************************/
 html, body {
   /* Safari 5.1+, Chrome 10+ */
   background: -webkit-radial-gradient(center,60% 60%,#92a5ba,#485563);
@@ -13,14 +16,32 @@ html, body {
   /*background: -ms-radial-gradient(circle, #1a82f7, #2F2727);*/          
 }
 
-#wrapper {
+.container {
+ 	margin-top:0px;
+ 	/*border:1px solid purple;*/
+ 	position:absolute;
+ 	top:0;
+ 	bottom:0;
+ 	right:0;
+ 	left:0;
+ }
+ 
+.wrapper {
 	width: 90%;
 	max-width: 1100px;
 	min-width: 800px;
-	margin: 50px auto;
+	margin: 60px auto;
 }
 
-#columns {
+.body-content {
+	/*padding: 10px 10px 10px 10px;*/
+	/*min-height: 100%;*/
+}
+
+/*
+ * Masonry styles
+ *******************/
+.masonry-cols {
 	-webkit-column-count: 3;
 	-webkit-column-gap: 10px;
 	-webkit-column-fill: auto;
@@ -66,7 +87,7 @@ html, body {
 }
 
 @media (min-width: 960px) {
-	#columns {
+	.masonry-cols {
 		-webkit-column-count: 4;
 		-moz-column-count: 4;
 		column-count: 4;
@@ -74,14 +95,14 @@ html, body {
 }
 
 @media (min-width: 1100px) {
-	#columns {
+	.masonry-cols {
 		-webkit-column-count: 5;
 		-moz-column-count: 5;
 		column-count: 5;
 	}
 }
 
-#columns-small {
+.masonry-cols-small {
 	-webkit-column-count: 2;
 	-webkit-column-gap: 2px;
 	-webkit-column-fill: auto;
@@ -118,12 +139,12 @@ html, body {
 }
 
 /*
-#columns:hover .pin:not(:hover) {
+.masonry-cols:hover .pin:not(:hover) {
 	opacity: 0.4;
 }
 */
 
-#columns:hover .pin, #columns:hover .pin a {
+.masonry-cols:hover .pin, .masonry-cols:hover .pin a {
 	cursor: -webkit-zoom-in; cursor: -moz-zoom-in;
 }
 
@@ -175,3 +196,4 @@ html, body {
     margin-right:7px;
     cursor: pointer; 
 }	
+
